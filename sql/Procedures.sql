@@ -1,0 +1,1 @@
+source procedures/append_difference_to_json.sql;
