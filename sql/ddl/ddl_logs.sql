@@ -6,6 +6,7 @@ CREATE TABLE logs (
     acct_id             VARCHAR(36),
     rest_id             VARCHAR(36),
     tbl_nm              VARCHAR(64),
+    tbl_pk_id           VARCHAR(36),
     log_msg             JSON,
     creat_ts            DATETIME DEFAULT NOW(),
     mod_ts              DATETIME DEFAULT NOW(),

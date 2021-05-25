@@ -37,8 +37,8 @@ BEGIN
         SET diff_st = append_difference_to_json_text(diff_st, 'country', old.country, new.country);
     END IF;
 
-    INSERT INTO logs(system_id, acct_id, rest_id, tbl_nm, log_msg)
-         VALUES (current_user, new.mod_by_acct_id, new.rest_id, 'rest_addrs', diff_st);
+    INSERT INTO logs(system_id, acct_id, rest_id, tbl_nm, tbl_pk_id, log_msg)
+         VALUES (current_user, new.mod_by_acct_id, new.rest_id, 'rest_addrs', new.rest_addr_id, diff_st);
 END$$
 
 DELIMITER ;

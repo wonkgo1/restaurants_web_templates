@@ -25,8 +25,8 @@ BEGIN
         SET diff_st = append_difference_to_json_text(diff_st, 'img_id', old.img_id, new.img_id);
     END IF;
 
-    INSERT INTO logs(system_id, acct_id, rest_id, tbl_nm, log_msg)
-         VALUES (current_user, new.mod_by_acct_id, new.rest_id, 'rest_men_itms', diff_st);
+    INSERT INTO logs(system_id, acct_id, rest_id, tbl_nm, tbl_pk_id, log_msg)
+         VALUES (current_user, new.mod_by_acct_id, new.rest_id, 'rest_men_itms', new.rest_men_itm_id, diff_st);
 END$$
 
 DELIMITER ;
