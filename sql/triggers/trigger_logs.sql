@@ -6,7 +6,7 @@ CREATE TRIGGER bi_logs
     ON logs FOR EACH ROW
 BEGIN
     SET new.system_id = current_user;
-    SET new.create_ts = current_time;
+    SET new.creat_ts = current_time;
     SET new.mod_ts = current_time;
 END$$
 

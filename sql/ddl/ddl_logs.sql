@@ -6,7 +6,7 @@ CREATE TABLE logs (
     acct_id             VARCHAR(36),
     rest_id             VARCHAR(36),
     tbl_nm              VARCHAR(64),
-    log_msg             TEXT,
+    log_msg             JSON,
     creat_ts            DATETIME DEFAULT NOW(),
     mod_ts              DATETIME DEFAULT NOW(),
     CONSTRAINT pk__logs PRIMARY KEY(log_id),

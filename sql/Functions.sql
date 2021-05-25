@@ -1,0 +1,3 @@
+source functions/append_difference_to_json_text.sql;
+source functions/append_difference_to_json_datetime.sql;
+source functions/append_difference_to_json_int.sql;
