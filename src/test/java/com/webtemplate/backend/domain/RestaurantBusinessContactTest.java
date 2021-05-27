@@ -2,6 +2,7 @@ package com.webtemplate.backend.domain;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Date;
 
@@ -15,7 +16,7 @@ public class RestaurantBusinessContactTest {
         return new RestaurantBusinessContact().createdByAccountId("createdByAccountId").createdDate(testDate)
                 .email("email").firstName("firstName").lastName("lastName").modifiedByAccountId("modifiedByAccountId")
                 .modifiedDate(testDate).phone("phone").restaurantBusinessContactId("restaurantBusinessContactId")
-                .restaurantId("restaurantId").title("title");
+                .restaurant(RestaurantTest.getInstance()).title("title");
     }
 
     @Test
@@ -40,7 +41,7 @@ public class RestaurantBusinessContactTest {
         assertEquals(busContact.getModifiedDate(), testDate);
         assertEquals(busContact.getPhone(), "phone");
         assertEquals(busContact.getRestaurantBusinessContactId(), "restaurantBusinessContactId");
-        assertEquals(busContact.getRestaurantId(), "restaurantId");
+        assertTrue(busContact.getRestaurant().equals(RestaurantTest.getInstance()));
         assertEquals(busContact.getTitle(), "title");
     }
 }

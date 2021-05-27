@@ -1,24 +1,25 @@
 package com.webtemplate.backend.domain;
 
-import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public class IdDomain<E extends IdDomain<E>> extends BaseDomain<E> {
-    @Column(name = "rest_id")
-    String restaurantId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    Restaurant restaurant;
 
-    public String getRestaurantId() {
-        return this.restaurantId;
+    public Restaurant getRestaurant() {
+        return this.restaurant;
     }
 
-    public void setRestaurantId(String restaurantId) {
-        this.restaurantId = restaurantId;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public E restaurantId(String restaurantId) {
-        setRestaurantId(restaurantId);
-        @SuppressWarnings("unchecked") E that = (E) this;
+    public E restaurant(Restaurant restaurant) {
+        setRestaurant(restaurant);
+        @SuppressWarnings("unchecked") E that = (E)this;
         return that;
     }
 

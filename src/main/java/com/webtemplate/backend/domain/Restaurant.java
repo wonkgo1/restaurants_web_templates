@@ -71,4 +71,7 @@ public class Restaurant extends BaseDomain<Restaurant> {
         return this;
     }
 
+    public boolean equals(Restaurant other) {
+        return this.restaurantId.equals(other.restaurantId);
+    }
 }
