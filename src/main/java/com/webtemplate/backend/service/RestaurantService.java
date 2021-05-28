@@ -14,8 +14,12 @@ public class RestaurantService {
     
     private static final Logger logger = LoggerFactory.getLogger(RestaurantService.class);
 
-    @Autowired
     RestaurantRepository restaurantDB;
+
+    @Autowired
+    public RestaurantService(RestaurantRepository restaurantDB) {
+        this.restaurantDB = restaurantDB;
+    }
 
     public Restaurant findByRestaurantId(@NonNull final String restaurantId) {
         return restaurantDB.findByRestaurantId(restaurantId);

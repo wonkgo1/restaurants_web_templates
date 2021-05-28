@@ -4,17 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
-import java.util.Map;
-
 import com.webtemplate.backend.BackendApplicationTests;
 import com.webtemplate.backend.domain.Restaurant;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
-@SpringBootTest
-public class RestaurantRepositoryTest {
+@WebMvcTest
+public class RestaurantRepositoryIntegrationTest {
 
     @Mock
     RestaurantRepository restaurantDB;
