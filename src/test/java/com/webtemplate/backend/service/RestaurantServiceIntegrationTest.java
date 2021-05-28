@@ -12,10 +12,10 @@ import com.webtemplate.backend.repository.RestaurantRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@WebMvcTest
-public class RestaurantServiceIntegrationTest extends BackendApplicationTests {
+@DataJpaTest
+public class RestaurantServiceIntegrationTest {
 
     @InjectMocks
     RestaurantService restaurantService;

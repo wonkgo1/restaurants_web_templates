@@ -8,13 +8,13 @@ import com.webtemplate.backend.BackendApplicationTests;
 import com.webtemplate.backend.domain.Restaurant;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
-@WebMvcTest
+@DataJpaTest
 public class RestaurantRepositoryIntegrationTest {
 
-    @Mock
+    @MockBean
     RestaurantRepository restaurantDB;
 
     @Test
