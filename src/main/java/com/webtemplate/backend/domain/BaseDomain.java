@@ -1,12 +1,13 @@
 package com.webtemplate.backend.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class BaseDomain<E extends BaseDomain<E>> {
+public class BaseDomain<E extends BaseDomain<E>> implements Serializable {
     @Column(name = "creat_by_acct_id")
     String createdByAccountId;
     @Column(name = "mod_by_acct_id")
@@ -50,25 +51,29 @@ public class BaseDomain<E extends BaseDomain<E>> {
 
     public E createdByAccountId(String createdByAccountId) {
         setCreatedByAccountId(createdByAccountId);
-        @SuppressWarnings("unchecked") E that = (E) this;
+        @SuppressWarnings("unchecked")
+        E that = (E) this;
         return that;
     }
 
     public E modifiedByAccountId(String modifiedByAccountId) {
         setModifiedByAccountId(modifiedByAccountId);
-        @SuppressWarnings("unchecked") E that = (E) this;
+        @SuppressWarnings("unchecked")
+        E that = (E) this;
         return that;
     }
 
     public E createdDate(Date createdDate) {
         setCreatedDate(createdDate);
-        @SuppressWarnings("unchecked") E that = (E) this;
+        @SuppressWarnings("unchecked")
+        E that = (E) this;
         return that;
     }
 
     public E modifiedDate(Date modifiedDate) {
         setModifiedDate(modifiedDate);
-        @SuppressWarnings("unchecked") E that = (E) this;
+        @SuppressWarnings("unchecked")
+        E that = (E) this;
         return that;
     }
 

@@ -13,7 +13,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest
@@ -27,9 +27,11 @@ public class RestaurantControllerIntegrationTest {
 
     @Test
     void getRestaurantNull() throws Exception {
-        mockMvc.perform(get("/restaurant"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(content().string("no restaurantId has been given"));
+        mockMvc.perform(get("/restaurant/"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.responseType").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.returnObject").value("no restaurantId has been given"));
     }
 
     @Test
@@ -39,7 +41,9 @@ public class RestaurantControllerIntegrationTest {
         mockMvc.perform(get("/restaurant/someRandomString"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("no restaurant has been found with someRandomString"));
+                .andExpect(jsonPath("$.responseType").value("BAD_REQUEST"))
+                .andExpect(jsonPath("$.returnObject")
+                        .value("no restaurant has been found with someRandomString"));
 
         verify(restaurantService).findByRestaurantId("someRandomString");
     }
@@ -53,8 +57,10 @@ public class RestaurantControllerIntegrationTest {
         mockMvc.perform(get("/restaurant/da215b52-be98-11eb-ba46-0242ac110002"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(
-                        "Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)"));
+                .andExpect(jsonPath("$.responseType").value("OK"))
+                .andExpect(jsonPath("$.returnObject.restaurantId")
+                        .value("da215b52-be98-11eb-ba46-0242ac110002"))
+                .andExpect(jsonPath("$.returnObject.restaurantName").value("parent restaurant"));
 
         verify(restaurantService).findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
     }

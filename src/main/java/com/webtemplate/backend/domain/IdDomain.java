@@ -19,7 +19,8 @@ public class IdDomain<E extends IdDomain<E>> extends BaseDomain<E> {
 
     public E restaurant(Restaurant restaurant) {
         setRestaurant(restaurant);
-        @SuppressWarnings("unchecked") E that = (E)this;
+        @SuppressWarnings("unchecked")
+        E that = (E) this;
         return that;
     }
 

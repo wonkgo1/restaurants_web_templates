@@ -5,6 +5,7 @@ import static org.mockito.Mockito.verify;
 
 import com.webtemplate.backend.BackendApplicationTests;
 import com.webtemplate.backend.domain.Restaurant;
+import com.webtemplate.backend.helper.ApiResponse;
 import com.webtemplate.backend.service.RestaurantService;
 
 import org.junit.jupiter.api.Test;
@@ -15,8 +16,10 @@ public class RestaurantControllerUnitTest {
     @Test
     void getRestaurantNull() {
         RestaurantService service = Mockito.mock(RestaurantService.class);
+
         RestaurantController controller = new RestaurantController(service);
-        String msg = controller.getRestaurant(null);
+        ApiResponse apiResponse = controller.getRestaurant(null);
+        String msg = apiResponse.getReturnObject().toString();
 
         assertEquals("no restaurantId has been given", msg);
     }
@@ -25,8 +28,10 @@ public class RestaurantControllerUnitTest {
     void getRestaurantNotFound() {
         RestaurantService service = Mockito.mock(RestaurantService.class);
         Mockito.when(service.findByRestaurantId("some random string")).thenReturn(null);
+
         RestaurantController controller = new RestaurantController(service);
-        String msg = controller.getRestaurant("some random string");
+        ApiResponse apiResponse = controller.getRestaurant("some random string");
+        String msg = apiResponse.getReturnObject().toString();
 
         assertEquals("no restaurant has been found with some random string", msg);
 
@@ -43,9 +48,10 @@ public class RestaurantControllerUnitTest {
                 .thenReturn(target);
 
         RestaurantController controller = new RestaurantController(service);
-        String msg = controller.getRestaurant("da215b52-be98-11eb-ba46-0242ac110002");
+        ApiResponse apiResponse = controller.getRestaurant("da215b52-be98-11eb-ba46-0242ac110002");
+        Restaurant restaurant = (Restaurant)apiResponse.getReturnObject();
 
-        assertEquals("Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)", msg);
+        assertEquals("da215b52-be98-11eb-ba46-0242ac110002", restaurant.getRestaurantId());
 
         verify(service).findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
     }

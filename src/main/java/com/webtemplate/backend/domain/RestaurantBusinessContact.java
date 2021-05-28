@@ -71,7 +71,8 @@ public class RestaurantBusinessContact extends IdDomain<RestaurantBusinessContac
         this.email = email;
     }
 
-    public RestaurantBusinessContact restaurantBusinessContactId(String restaurantBusinessContactId) {
+    public RestaurantBusinessContact restaurantBusinessContactId(
+            String restaurantBusinessContactId) {
         setRestaurantBusinessContactId(restaurantBusinessContactId);
         return this;
     }
