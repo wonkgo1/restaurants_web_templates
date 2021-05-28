@@ -13,13 +13,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @AutoConfigureMockMvc
 public class RestaurantServiceAcceptanceTest {
-    
+
     @Autowired
     RestaurantService restaurantService;
 
     @Test
     void findByRestaurantId() {
-        Restaurant one = restaurantService.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
+        Restaurant one =
+                restaurantService.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
         assertNotNull(one);
         assertEquals(one.getRestaurantId(), "da215b52-be98-11eb-ba46-0242ac110002");
     }

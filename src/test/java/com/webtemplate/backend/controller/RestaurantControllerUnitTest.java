@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class RestaurantControllerUnitTest {
-    
+
     @Test
     void getRestaurantNull() {
         RestaurantService service = Mockito.mock(RestaurantService.class);
@@ -35,10 +35,12 @@ public class RestaurantControllerUnitTest {
 
     @Test
     void getRestaurant() {
-        Restaurant target = BackendApplicationTests.restaurants.get("da215b52-be98-11eb-ba46-0242ac110002");
+        Restaurant target =
+                BackendApplicationTests.restaurants.get("da215b52-be98-11eb-ba46-0242ac110002");
 
         RestaurantService service = Mockito.mock(RestaurantService.class);
-        Mockito.when(service.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002")).thenReturn(target);
+        Mockito.when(service.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002"))
+                .thenReturn(target);
 
         RestaurantController controller = new RestaurantController(service);
         String msg = controller.getRestaurant("da215b52-be98-11eb-ba46-0242ac110002");

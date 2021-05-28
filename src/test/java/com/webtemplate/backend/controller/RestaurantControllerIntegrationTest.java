@@ -27,7 +27,8 @@ public class RestaurantControllerIntegrationTest {
 
     @Test
     void getRestaurantNull() throws Exception {
-        mockMvc.perform(get("/restaurant")).andDo(print()).andExpect(status().isOk())
+        mockMvc.perform(get("/restaurant"))
+                .andDo(print()).andExpect(status().isOk())
                 .andExpect(content().string("no restaurantId has been given"));
     }
 
@@ -35,7 +36,9 @@ public class RestaurantControllerIntegrationTest {
     void getRestaurantNotFound() throws Exception {
         when(restaurantService.findByRestaurantId("someRandomString")).thenReturn(null);
 
-        mockMvc.perform(get("/restaurant/someRandomString")).andDo(print()).andExpect(status().isOk())
+        mockMvc.perform(get("/restaurant/someRandomString"))
+                .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(content().string("no restaurant has been found with someRandomString"));
 
         verify(restaurantService).findByRestaurantId("someRandomString");
@@ -44,11 +47,14 @@ public class RestaurantControllerIntegrationTest {
     @Test
     void getRestaurant() throws Exception {
         when(restaurantService.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002"))
-        .thenReturn(BackendApplicationTests.restaurants.get("da215b52-be98-11eb-ba46-0242ac110002"));
+                .thenReturn(BackendApplicationTests.restaurants
+                        .get("da215b52-be98-11eb-ba46-0242ac110002"));
 
-        mockMvc.perform(get("/restaurant/da215b52-be98-11eb-ba46-0242ac110002")).andDo(print())
+        mockMvc.perform(get("/restaurant/da215b52-be98-11eb-ba46-0242ac110002"))
+                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)"));
+                .andExpect(content().string(
+                        "Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)"));
 
         verify(restaurantService).findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
     }

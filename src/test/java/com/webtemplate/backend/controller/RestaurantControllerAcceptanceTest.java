@@ -19,20 +19,26 @@ public class RestaurantControllerAcceptanceTest {
 
     @Test
     void getRestaurantNull() throws Exception {
-        mockMvc.perform(get("/restaurant")).andDo(print()).andExpect(status().isOk())
+        mockMvc.perform(get("/restaurant"))
+                .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(content().string("no restaurantId has been given"));
     }
 
     @Test
     void getRestaurantNotFound() throws Exception {
-        mockMvc.perform(get("/restaurant/someRandomString")).andDo(print()).andExpect(status().isOk())
+        mockMvc.perform(get("/restaurant/someRandomString"))
+                .andDo(print())
+                .andExpect(status().isOk())
                 .andExpect(content().string("no restaurant has been found with someRandomString"));
     }
 
     @Test
     void getRestaurant() throws Exception {
-        mockMvc.perform(get("/restaurant/da215b52-be98-11eb-ba46-0242ac110002")).andDo(print())
+        mockMvc.perform(get("/restaurant/da215b52-be98-11eb-ba46-0242ac110002"))
+                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string("Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)"));
+                .andExpect(content().string(
+                        "Restaurant(da215b52-be98-11eb-ba46-0242ac110002, parent restaurant)"));
     }
 }

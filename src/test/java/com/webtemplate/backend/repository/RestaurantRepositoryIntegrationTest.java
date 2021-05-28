@@ -20,7 +20,8 @@ public class RestaurantRepositoryIntegrationTest {
     @Test
     void findByRestaurantId() {
         when(restaurantDB.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002"))
-        .thenReturn(BackendApplicationTests.restaurants.get("da215b52-be98-11eb-ba46-0242ac110002"));
+                .thenReturn(BackendApplicationTests.restaurants
+                        .get("da215b52-be98-11eb-ba46-0242ac110002"));
 
         Restaurant one = restaurantDB.findByRestaurantId("da215b52-be98-11eb-ba46-0242ac110002");
         assertNotNull(one);
